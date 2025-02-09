@@ -6,11 +6,12 @@
    <UUID>ba65f650-1a0b-4844-a102-3754c23d93c0</UUID>
    <createdEdition>FREE</createdEdition>
    <createdVersion>10.0.1</createdVersion>
-   <freeLicense>false</freeLicense>
+   <freeLicense>true</freeLicense>
    <migratedVersion>5.9.0</migratedVersion>
    <modifiedEdition>FREE</modifiedEdition>
    <modifiedVersion>10.0.1</modifiedVersion>
    <pageLoadTimeout>0</pageLoadTimeout>
+   <projectFileLocation>D:\Project\Katalon Project\katalon-ui-framework\katalon-ui-framework.prj</projectFileLocation>
    <sourceContent>
       <sourceFolderList>
          <sourceFolderConfiguration>

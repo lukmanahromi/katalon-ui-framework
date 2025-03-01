@@ -4,4 +4,14 @@
    <name>default</name>
    <tag></tag>
    <defaultProfile>true</defaultProfile>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>'https://www.saucedemo.com/v1/'</initValue>
+      <name>WEB_URL</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description>true : to close, false : dont close browser</description>
+      <initValue>false</initValue>
+      <name>IS_CLOSE_BROWSER</name>
+   </GlobalVariableEntity>
 </GlobalVariableEntities>

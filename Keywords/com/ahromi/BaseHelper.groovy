@@ -22,6 +22,8 @@ import internal.GlobalVariable
 
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.WebDriver
+import org.apache.poi.ss.usermodel.*
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.openqa.selenium.By
 
 import com.kms.katalon.core.webui.driver.DriverFactory
@@ -45,11 +47,11 @@ class BaseHelper {
 		 */
 		TestObject to = new TestObject(objName)
 		to.addProperty(property, ConditionType.EQUALS, value)
-//		to.selectorMethod = SelectorMethod.BASIC
+		//		to.selectorMethod = SelectorMethod.BASIC
 		return to
 	}
 
-	
+
 	public void verifyLanding(TestObject to, String screenName) {
 		if (WebUI.waitForElementPresent(to, 5)) {
 			KeywordUtil.markPassed("Success : Landing to $screenName")
@@ -57,4 +59,56 @@ class BaseHelper {
 			KeywordUtil.markFailed("Failed : Landing to $screenName")
 		}
 	}
+
+	
+	static Map<String, String> getTestDataByScenario(String sheetName, String filePath, String scenarioID) {
+		FileInputStream fis = new FileInputStream(filePath)
+		Workbook workbook = new XSSFWorkbook(fis)
+		Sheet sheet = workbook.getSheet(sheetName)
+
+		Map<String, String> dataMap = [:]
+
+		int headerRow = 0
+		int scenarioColumn = -1
+
+		// Get Header Row
+		Row header = sheet.getRow(headerRow)
+		for (int i = 0; i < header.getLastCellNum(); i++) {
+			if (header.getCell(i).getStringCellValue() == "ScenarioId") {
+				scenarioColumn = i
+				break
+			}
+		}
+
+		if (scenarioColumn == -1) {
+			KeywordUtil.markFailed("❌ Column 'ScenarioId' not found")
+			return null
+		}
+
+		// Loop through rows
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			Row row = sheet.getRow(i)
+			if (row.getCell(scenarioColumn)?.getStringCellValue() == scenarioID) {
+				KeywordUtil.markPassed("✅ Scenario Found: ${scenarioID}")
+				for (int j = 0; j < header.getLastCellNum(); j++) {
+					String key = header.getCell(j).getStringCellValue()
+					String value = row.getCell(j)?.getStringCellValue()
+					dataMap[key] = value
+				}
+				break
+			}
+		}
+
+		if (dataMap.isEmpty()) {
+			KeywordUtil.markFailed("❌ No Data Found for Scenario ID: ${scenarioID}")
+			return null
+		}
+
+		KeywordUtil.logInfo("Scenario Data: ${dataMap}")
+		
+		GlobalVariable.TEST_DATA = dataMap
+		return dataMap
+	}
+	
+	
 }

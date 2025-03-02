@@ -11,7 +11,17 @@
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description>true : to close, false : dont close browser</description>
-      <initValue>false</initValue>
+      <initValue>true</initValue>
       <name>IS_CLOSE_BROWSER</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>'./Data Files/'</initValue>
+      <name>TEST_DATA_LOCATION</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description>This Var is for using same excel files with diff Test Cases</description>
+      <initValue>[:]</initValue>
+      <name>TEST_DATA</name>
    </GlobalVariableEntity>
 </GlobalVariableEntities>

@@ -40,14 +40,6 @@ git clone https://github.com/lukmanahromi/katalon-ui-framework
 ```
 ---
 
-## 🧠 Learn More
-
-- 📝 **Blog Article**: [Next-Level Automation with POM in Katalon 🔥](https://ahromi.vercel.app/katalon-pom-helpers)  
-- 🎯 **Made with**: Katalon Studio, Groovy, and patience  
-- 🎨 **Styled with**: A little bit of chaos and a lot of automation love
-
----
-
 ## 📬 Contact
 
 Made with ❤️ by **[@lukmanahromi](https://www.linkedin.com/in/lukmanahromi/)**  

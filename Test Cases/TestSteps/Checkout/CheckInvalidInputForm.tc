@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>CheckInvalidInputForm</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>cdaf789c-da17-4b2a-a01f-5c3cb15f9aed</testCaseGuid>
+</TestCaseEntity>

@@ -1,4 +1,4 @@
-package com.ahromi.LoginPage
+package com.ahromi.PageObjects
 
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
@@ -6,7 +6,7 @@ import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
-import com.ahromi.BaseHelper
+import com.ahromi.Helpers.BaseHelper
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.checkpoint.Checkpoint
 import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
@@ -44,15 +44,15 @@ public class LoginScreen extends BaseHelper {
 	public void verifyLandingOnLoginScreen() {
 		verifyLanding(lblTitleLogin, "Login Screen")
 	}
-	
+
 	public void inputUsername(String username) {
 		WebUI.setText(txfUsername, username)
 	}
-	
+
 	public void inputPassword(String password) {
 		WebUI.setText(txfPassword, password)
 	}
-	
+
 	public void verifyInvalidInput() {
 		if (WebUI.verifyElementVisible(lblInvalid)) {
 			WebUI.getText(lblInvalid)

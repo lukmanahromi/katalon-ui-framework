@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>P_001_Order_With_Multiple_Items</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>e1346ca5-cedd-495c-9b4f-41868c961b0e</testCaseGuid>
+</TestCaseEntity>

@@ -1,4 +1,4 @@
-package com.ahromi
+package com.ahromi.Helpers
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
@@ -60,7 +60,7 @@ class BaseHelper {
 		}
 	}
 
-	
+
 	static Map<String, String> getTestDataByScenario(String sheetName, String filePath, String scenarioID) {
 		FileInputStream fis = new FileInputStream(filePath)
 		Workbook workbook = new XSSFWorkbook(fis)
@@ -105,10 +105,8 @@ class BaseHelper {
 		}
 
 		KeywordUtil.logInfo("Scenario Data: ${dataMap}")
-		
+
 		GlobalVariable.TEST_DATA = dataMap
 		return dataMap
 	}
-	
-	
 }

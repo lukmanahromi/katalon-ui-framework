@@ -22,7 +22,7 @@ import com.kms.katalon.core.annotation.AfterTestSuite
 import com.kms.katalon.core.context.TestCaseContext
 import com.kms.katalon.core.context.TestSuiteContext
 
-class AhromiListener {
+class ExecutionListener {
 	@BeforeTestSuite
 	def beforeTestSuite() {
 		WebUI.openBrowser(GlobalVariable.WEB_URL)

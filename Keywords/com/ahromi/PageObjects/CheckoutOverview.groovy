@@ -21,33 +21,26 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 
 import internal.GlobalVariable
 
-public class CheckoutScreen extends BaseHelper{
-	private TestObject lblCheckoutTitle
-	private TestObject txfFirstName
-	private TestObject txfLastName
-	private TestObject txfPostalCode
-	private TestObject btnContinue
+public class CheckoutOverview extends BaseHelper {
+	private TestObject lblOverviewTitle
+	private TestObject lblItemTitle
+	private TestObject lblItemDesc
+	private TestObject lblPrice
+	private TestObject txtTotalItemPrice
+	private TestObject txtTax
+	private TestObject txtTotalPrice
 	
-	public CheckoutScreen() {
-		lblCheckoutTitle = getTestObject("lblCheckoutTitle", "//*[@class = 'title' and text() = 'Checkout: Your Information']")
-		txfFirstName	 = getTestObject("txfFirstName", "first-name", "id")
-		txfLastName		 = getTestObject("txfLastName", "last-name", "id")
-		txfPostalCode	 = getTestObject("txfPostalCode", "postal-code", "id")
-		btnContinue	 	 = getTestObject("btnContinue", "continue", "id")
+	public CheckoutOverview() {
+		lblOverviewTitle	= getTestObject("lblOverviewTitle", "//*[@class = 'title' and text() = 'Checkout: Overview']")
+		lblItemTitle		= getTestObject("lblItemTitle", "inventory_item_name", "class")
+		lblItemDesc			= getTestObject("lblItemDesc", "inventory_item_desc", "class")
+		lblPrice			= getTestObject("lblPrice", "inventory_item_price", "class")
+		txtTotalItemPrice	= getTestObject("txtTotalItemPrice", "summary_subtotal_label", "class")
+		txtTax				= getTestObject("txtTax", "summary_tax_label", "class")
+		txtTotalPrice		= getTestObject("txtTotalPrice", "summary_total_label", "class")
 	}
 	
-	public void verifyLandingScreen() {
-		verifyLanding(lblCheckoutTitle, "Checkout Screen")
+	public void VerifyLandingScreen() {
+		verifyLanding(lblOverviewTitle, "Checkout Overview")
 	}
-	
-	public void inputForm(String firstName, String lastName, String postalCode) {
-		WebUI.setText(txfFirstName, firstName)
-		WebUI.setText(txfLastName, lastName)
-		WebUI.setText(txfPostalCode, postalCode)
-	}
-	
-	public void clickContinue() {
-		WebUI.click(btnContinue)
-	}
-	
 }

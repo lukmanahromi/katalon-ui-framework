@@ -7,6 +7,7 @@ import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.checkpoint.Checkpoint
 import com.kms.katalon.core.checkpoint.CheckpointFactory
+import com.kms.katalon.core.configuration.RunConfiguration
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords
 import com.kms.katalon.core.model.FailureHandling
 import com.kms.katalon.core.testcase.TestCase
@@ -46,9 +47,59 @@ class BaseHelper {
 		 * value : based on what property used, if u use xpath => "//*[text() = 'Login']", if u use id just write only id
 		 */
 		TestObject to = new TestObject(objName)
-		to.addProperty(property, ConditionType.EQUALS, value)
+		to.addProperty(property, ConditionType.CONTAINS, value)
 		//		to.selectorMethod = SelectorMethod.BASIC
 		return to
+	}
+
+	public String getXpath(TestObject to) {
+		def prop = to.getProperties().find()
+
+		if (prop == null) {
+			return null
+		}
+
+		String name = prop.getName().toLowerCase()
+		String value = prop.getValue()
+
+		switch (name) {
+			case "xpath":
+				return value // already a valid xpath
+			case "id":
+				return "//*[contains(@id, '${value}')]"
+			case "class":
+				return "//*[contains(@class, '${value}')]"
+			case "text":
+				return "//*[contains(text(), '${value}')]"
+			case "name":
+				return "//*[contains(@name, '${value}')]"
+			default:
+			// fallback to generic contains
+				return "//*[contains(@${name}, '${value}')]"
+		}
+	}
+
+	public List<WebElement> getListElementByTestObject(TestObject to) {
+		def driver = DriverFactory.getWebDriver()
+
+		// Extract selector method & value
+		String xpath = null
+		def prop = to.getProperties().find { it.getName().equalsIgnoreCase("xpath") }
+
+		if (prop) {
+			xpath = prop.getValue()
+		} else {
+			// If not using xpath, convert other properties into xpath
+			xpath = getXpath(to) // <- from your previous method!
+		}
+
+		// Return list of WebElements matching the XPath
+		return driver.findElements(By.xpath(xpath))
+	}
+
+	public List<WebElement> getListElementByTestObject(String xpath) {
+		def driver = DriverFactory.getWebDriver()
+		return driver.findElements(By.xpath(xpath))
 	}
 
 
@@ -108,5 +159,13 @@ class BaseHelper {
 
 		GlobalVariable.TEST_DATA = dataMap
 		return dataMap
+	}
+
+	static void validateIsEquals(String actual, String expected) {
+		if (actual.equalsIgnoreCase(expected)) {
+			KeywordUtil.markPassed("Actual : $actual, is equals with Expected : $expected")
+		}else {
+			KeywordUtil.markFailed("Actual : $actual, is not equals with Expected : $expected")
+		}
 	}
 }

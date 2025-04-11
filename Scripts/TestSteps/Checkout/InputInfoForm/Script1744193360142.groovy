@@ -3,6 +3,9 @@ import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
+
+import com.ahromi.PageObjects.CheckoutOverview
+import com.ahromi.PageObjects.CheckoutScreen
 import com.kms.katalon.core.checkpoint.Checkpoint as Checkpoint
 import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
@@ -17,3 +20,14 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+CheckoutScreen checkout = new CheckoutScreen()
+CheckoutOverview checkoutOverview = new CheckoutOverview()
+
+'Step 1 : Input Form'
+checkout.inputForm(FirstName, LastName, PostalCode)
+
+'Step 2 : Click Continue'
+checkout.clickContinue()
+
+'Step 3 : Verify Landing In Checkout Overview Screen'
+checkoutOverview.VerifyLandingScreen()

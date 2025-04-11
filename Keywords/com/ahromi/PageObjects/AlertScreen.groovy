@@ -15,39 +15,35 @@ import com.kms.katalon.core.model.FailureHandling
 import com.kms.katalon.core.testcase.TestCase
 import com.kms.katalon.core.testdata.TestData
 import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 
 import internal.GlobalVariable
 
-public class CheckoutScreen extends BaseHelper{
-	private TestObject lblCheckoutTitle
-	private TestObject txfFirstName
-	private TestObject txfLastName
-	private TestObject txfPostalCode
-	private TestObject btnContinue
+public class AlertScreen extends BaseHelper {
+	private TestObject lblAlertTitle
+	private TestObject imgAlertSuccess
+	private TestObject lblAlertSuccessTitle
+	private TestObject lblAlertSuccessDesc
 	
-	public CheckoutScreen() {
-		lblCheckoutTitle = getTestObject("lblCheckoutTitle", "//*[@class = 'title' and text() = 'Checkout: Your Information']")
-		txfFirstName	 = getTestObject("txfFirstName", "first-name", "id")
-		txfLastName		 = getTestObject("txfLastName", "last-name", "id")
-		txfPostalCode	 = getTestObject("txfPostalCode", "postal-code", "id")
-		btnContinue	 	 = getTestObject("btnContinue", "continue", "id")
+	public AlertScreen() {
+		lblAlertTitle 			= getTestObject("lblAlertTitle", "//*[@class = 'title' and text() = 'Checkout: Complete!']")
+		imgAlertSuccess 		= getTestObject("imgAlertSuccess", "pony_express", "class")
+		lblAlertSuccessTitle 	= getTestObject("lblAlertSuccessTitle", "complete-header", "class")
+		lblAlertSuccessDesc 	= getTestObject("lblAlertSuccessDesc", "complete-text", "class")
 	}
 	
 	public void verifyLandingScreen() {
-		verifyLanding(lblCheckoutTitle, "Checkout Screen")
+		verifyLanding(lblAlertTitle, "Alert Screen")
 	}
 	
-	public void inputForm(String firstName, String lastName, String postalCode) {
-		WebUI.setText(txfFirstName, firstName)
-		WebUI.setText(txfLastName, lastName)
-		WebUI.setText(txfPostalCode, postalCode)
+	public void verifyOrderSuccess() {
+		if (WebUI.verifyElementNotVisible(imgAlertSuccess) && WebUI.verifyElementNotVisible(lblAlertSuccessTitle) && WebUI.verifyElementNotVisible(lblAlertSuccessDesc)) {
+			KeywordUtil.markPassed("Success : Order Success!")
+		}else {
+			KeywordUtil.markFailed("Failed : Order Failed/Object Not Found")
+		}
 	}
-	
-	public void clickContinue() {
-		WebUI.click(btnContinue)
-	}
-	
 }

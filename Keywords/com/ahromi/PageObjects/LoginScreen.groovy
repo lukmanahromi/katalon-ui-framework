@@ -22,7 +22,6 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable
 
 public class LoginScreen extends BaseHelper {
-
 	private TestObject lblTitleLogin
 	private TestObject btnLogin
 	private TestObject txfUsername
@@ -41,7 +40,7 @@ public class LoginScreen extends BaseHelper {
 		WebUI.click(btnLogin)
 	}
 
-	public void verifyLandingOnLoginScreen() {
+	public void verifyLandingScreen() {
 		verifyLanding(lblTitleLogin, "Login Screen")
 	}
 

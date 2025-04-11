@@ -6,7 +6,7 @@
    <defaultProfile>true</defaultProfile>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>'https://www.saucedemo.com/v1/'</initValue>
+      <initValue>'https://www.saucedemo.com/'</initValue>
       <name>WEB_URL</name>
    </GlobalVariableEntity>
    <GlobalVariableEntity>
@@ -23,5 +23,10 @@
       <description>This Var is for using same excel files with diff Test Cases</description>
       <initValue>[:]</initValue>
       <name>TEST_DATA</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>''</initValue>
+      <name>TEST_CASE_NAME</name>
    </GlobalVariableEntity>
 </GlobalVariableEntities>
